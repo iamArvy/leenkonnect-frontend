@@ -1,0 +1,32 @@
+<script setup lang="ts">
+  import { navs } from '@/data'
+  // const user = useState('user')
+</script>
+<template>
+    <header class="sticky top-0 gap-4 bg-white z-50 px-4 md:px-6 bg-opacity-90 w-full">
+      <section class="container flex justify-between h-16 items-center mx-auto" >
+        <div class="flex flex-row items-center gap-2">
+            <HeaderMobileNav :navs=navs />
+            <NuxtLink to="/" class="text-xl text-uppercase cursor-pointer"><AppLogo /> </NuxtLink>
+        </div>
+        <nav class="hidden justify-center w-full space-x-1 text-2xl font-medium lg:flex flex-row md:items-center md:space-x-2 md:text-lg lg:gap-6">
+          <NuxtLink
+            v-for="{path, label} in navs"
+            :key="path"
+            :to="path"
+            active-class="text-primary font-bold"
+            class="hover:text-primary"
+          >
+            {{ label }}
+          </NuxtLink>
+        </nav>
+        <div class="flex items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
+          <Cart />
+          <LinkButton :link="{ to:'/consultation' }" class="hidden lg:block" >
+            Free Consultation
+          </LinkButton>
+          <!-- <HeaderAccount :auth="user" /> -->
+        </div>
+      </section>
+    </header>
+</template>
