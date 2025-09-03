@@ -1,4 +1,4 @@
-import type { Product } from "~/types";
+import type { Product, ProductCategories } from "~/types";
 
 export const mockProduct: Product = {
   id: '1',
@@ -19,6 +19,14 @@ export const mockProduct: Product = {
   slug: 'sample-product',
   createdAt: new Date().toISOString(),
 };
+
+export const mockCategories = [
+  { id: 'laptops', name: 'Laptops' },
+  { id: 'smartphones', name: 'Smartphones' },
+  { id: 'tablets', name: 'Tablets' },
+  { id: 'accessories', name: 'Accessories' },
+];
+
 
 const mockProducts: Product[] = [
   {
@@ -299,7 +307,11 @@ const mockProducts: Product[] = [
 ];
 
 // Simulate API calls with mock data
-export const mockFetchProduct = async (id: string): Promise<Product> => {
+export const mockFetchProduct = async (slug: string): Promise<Product> => {
+  return mockProducts.find(product => product.slug === slug) || mockProduct;
+};
+
+export const mockFetchProductById = async (id: string): Promise<Product> => {
   return mockProducts.find(product => product.id === id) || mockProduct;
 };
 
@@ -320,4 +332,8 @@ export const mockSearchProducts = async (query: string): Promise<Product[]> => {
     product.name.toLowerCase().includes(query.toLowerCase()) ||
     product.description.toLowerCase().includes(query.toLowerCase())
   );
+};
+
+export const mockListCategories = async (): Promise<ProductCategories> => {
+  return mockCategories;
 };

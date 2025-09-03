@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Minus, Plus } from 'lucide-vue-next';
-const { add, minus } = useCart()
+const { plus, minus } = useCart()
 defineProps<{
     value: number
     stock: number
@@ -9,14 +9,12 @@ defineProps<{
 </script>
 <template>
     <div class="flex items-center gap-2 p-1" >
-        <Button size="icon" @click="minus(value, id)">
-            <!-- <Icon icon="ic:baseline-minus" /> -->
+        <Button size="icon" @click="minus(1, id)">
             <Minus />
         </Button>
         <span class="flex-1 text-center" >{{ value }}</span>
-        <Button size="icon"  @click="add(value, id)"  >
+        <Button size="icon"  @click="plus(1, id)"  >
             <Plus />
-            <!-- <Icon icon="ic:baseline-plus"/> -->
         </Button >
     </div>
 </template>

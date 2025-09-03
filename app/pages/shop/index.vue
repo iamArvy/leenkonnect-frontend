@@ -6,5 +6,7 @@ const hero = {
 };
 </script>
 <template>
-  <HeroSection v-bind="hero" />
+  <main class="flex-1 flex bg-accent" >
+    <Catalogue />
+  </main>
 </template>

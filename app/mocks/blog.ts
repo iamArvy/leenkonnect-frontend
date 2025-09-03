@@ -1,4 +1,6 @@
-const categories = [
+import type { Post } from "~/types";
+
+export const categories = [
   {
     id: '1',
     name: 'Cybersecurity'
@@ -99,6 +101,10 @@ const posts = [
     slug: "in-depth-industry-ecosystem-analysis",
   }
 ]
+
+export const mockFetchPost = async (slug: string) => {
+  return posts.find(post => post.slug === slug) || posts[0];
+};
 
 export const getMockedPosts = () => {
   return posts.map(post => {

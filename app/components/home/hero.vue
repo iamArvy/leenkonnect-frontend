@@ -42,13 +42,6 @@
                 Shop Now
 
             </LinkButton>
-            <!-- <Button
-                
-                as-child
-            >
-                <NuxtLink to="shop">
-                </NuxtLink>
-            </Button> -->
         </div>
       </div>
         </div>

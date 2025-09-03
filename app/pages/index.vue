@@ -4,33 +4,30 @@ import { mockGetFeaturedProducts } from '~/mocks/product';
 import { mockGetServices } from '~/mocks/service';
 import { mockGetTestimonies } from '~/mocks/testimony';
 
-const { data, error } = await useAsyncData('dashboard', async () => {
+useAppTitle('Home')
+
+const { data, error } = await useAsyncData('home', async () => {
   const [
     services,
     featured,
     testimonies,
     blog
-    // stats,
-    // testimonials
   ] = await Promise.all([
     mockGetServices(),
     mockGetFeaturedProducts(),
     mockGetTestimonies(),
     getHomeMockedPosts()
-    // $fetch('/api/stats'),
-    // $fetch('/api/notifications')
   ])
   return {
     services,
     featured,
     testimonies,
     blog
-    // testimonials
   }
 })
 </script>
 <template>
-  <main class="mb-10">
+  <main>
     <HomeHero />
     <HomeServices :services="data?.services ?? null" />
     <HomeFeatured :products="data?.featured ?? null" />

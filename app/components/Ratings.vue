@@ -1,14 +1,15 @@
 <template>
-  <div class="flex" >
+  <div class="flex items-center" >
     <Star v-for="n in rating" :key="n" color="#ffd900" fill="#ffd900" :size="15" />
-    <!-- <Icon icon="material-symbols:star" width="16" height="16"  style="color: #ffd900" v-for="n in rating" :key="n" /> -->
+    <span class="ml-2 text-yellow-500">({{ total }})</span>
   </div>
 </template>
 
 <script setup lang="ts">
 import { Star } from 'lucide-vue-next';
 
-const props = defineProps<{
-  rating: number // Rating out of 5
+defineProps<{
+  rating: number,
+  total: number
 }>()
 </script>

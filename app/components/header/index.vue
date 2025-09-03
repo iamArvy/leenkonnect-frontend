@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { navs } from '@/data'
-  const user = useState('user')
+  // const user = useState('user')
 </script>
 <template>
     <header class="sticky top-0 gap-4 bg-white z-50 px-4 md:px-6 bg-opacity-90 w-full">
@@ -9,7 +9,7 @@
             <HeaderMobileNav :navs=navs />
             <NuxtLink to="/" class="text-xl text-uppercase cursor-pointer"><AppLogo /> </NuxtLink>
         </div>
-        <nav class="hidden flex-col justify-center w-full gap-6 text-2xl font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-lg lg:gap-6">
+        <nav class="hidden justify-center w-full space-x-1 text-2xl font-medium lg:flex flex-row md:items-center md:space-x-2 md:text-lg lg:gap-6">
           <NuxtLink
             v-for="{path, label} in navs"
             :key="path"
@@ -22,7 +22,10 @@
         </nav>
         <div class="flex items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
           <Cart />
-          <HeaderAccount :auth="user" />
+          <LinkButton :link="{ to:'/consultation' }" class="hidden lg:block" >
+            Free Consultation
+          </LinkButton>
+          <!-- <HeaderAccount :auth="user" /> -->
         </div>
       </section>
     </header>

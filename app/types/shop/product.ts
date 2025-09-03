@@ -1,4 +1,4 @@
-import type { Category } from "..";
+import type { ProductCategory } from ".";
 
 export interface ProductFeature {
     name: string;
@@ -16,7 +16,7 @@ export interface Product {
     stock: number;
     features: ProductFeature[];
     slug: string;
-    category?: Category;
+    category?: ProductCategory;
     deletedAt?: string | null;
     createdAt: string;
 }

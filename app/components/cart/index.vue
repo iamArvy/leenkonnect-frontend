@@ -23,8 +23,8 @@ const router = useRouter()
                         <img :src="product.image" alt="" class="h-full object-cover w-1/4">
                         <div class="flex flex-col gap-1 text-sm w-3/4">
                             <h1 class="text-md font-bold capitalize line-clamp-2">{{ product.name }}</h1>
-                            <p class="text-gray-500">Price:  <PriceFormat :amount="product.price" /></p>
-                            <p class="text-gray-500">Total: <PriceFormat :amount="cart.total" /></p>
+                            <p class="text-gray-500">Price: {{ formatPrice(product.price) }}</p>
+                            <p class="text-gray-500">Total: {{ formatPrice(cart.total) }}</p>
                         </div>
                     </div>
                     <div class="flex justify-between items-center gap-2">
@@ -49,7 +49,7 @@ const router = useRouter()
                     <SheetClose as-child>
                         <Button @click="clear()" :disabled="cart.items.length === 0" variant="destructive" >Clear</Button>
                     </SheetClose>
-                    <Button @click="router.push(`/checkout`)" :disabled="cart.items.length === 0">Checkout</Button>
+                    <Button @click="router.push(`/shop/checkout`)" :disabled="cart.items.length === 0">Checkout</Button>
                 </div>
             </div>
         </SheetFooter>

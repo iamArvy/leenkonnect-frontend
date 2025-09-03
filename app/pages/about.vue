@@ -6,7 +6,10 @@ const hero = {
 };
 </script>
 <template>
-  <HeroSection v-bind="hero" />
-  <AboutInformation />
-  <AboutStat />
+  <main>
+    <HeroSection v-bind="hero" />
+    <AboutInformation />
+    <AboutStat />
+  </main>
+  
 </template>

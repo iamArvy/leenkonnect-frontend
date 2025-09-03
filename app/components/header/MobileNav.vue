@@ -1,10 +1,10 @@
 <template>
     <Sheet >
-        <SheetTrigger class="md:hidden" as-child>
+        <SheetTrigger class="lg:hidden" as-child>
           <Menu />
         </SheetTrigger>
         <SheetContent side="left">
-          <nav class="grid gap-6 text-lg font-medium">
+          <nav class="grid gap-6 text-lg font-medium p-3">
             <h1 class="text-2xl font-bold">Leenkonnect</h1>
             <NuxtLink
               v-for="{ path, label } in navs"
@@ -14,13 +14,16 @@
             >
               {{ label }}
             </NuxtLink>
+            <LinkButton :link="{ to:'/consultation' }" >
+              Free Consultation
+            </LinkButton>
           </nav>
         </SheetContent>
       </Sheet>
 </template>
 
 <script setup lang="ts">
-import { Hamburger, HamburgerIcon, Menu } from 'lucide-vue-next';
+import { Menu } from 'lucide-vue-next';
 import type { Nav } from '~/types';
 defineProps<{
     navs: Nav[]

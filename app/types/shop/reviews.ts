@@ -1,6 +1,6 @@
-import { Product } from "./product";
+import type { Product } from "./product";
 
-interface Review {
+export interface Review {
     id: number;
     product_id: number;
     name: string;
@@ -10,8 +10,4 @@ interface Review {
     updated_at: string;
     date: string;
     product: Product;
-}
-
-export {
-    Review
 }

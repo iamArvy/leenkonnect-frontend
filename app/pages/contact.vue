@@ -6,6 +6,8 @@ const hero = {
 };
 </script>
 <template>
-  <HeroSection v-bind="hero" />
-  <Contact />
+  <main>
+    <HeroSection v-bind="hero" />
+    <Contact />
+  </main>
 </template>

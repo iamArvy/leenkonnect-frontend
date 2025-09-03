@@ -4,7 +4,9 @@ const hero = {
   description: "Get in touch with our experts to discuss your needs and explore how we can assist you.",
   bg: "/images/consultationbg.jpg"
 };
+useAppTitle('Consultation')
 </script>
 <template>
   <HeroSection v-bind="hero" />
+  <Consultation />
 </template>

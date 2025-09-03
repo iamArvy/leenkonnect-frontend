@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { Clock, Mail, MapPin, Phone } from "lucide-vue-next";
+import type { Component } from "vue";
 
-const information = [
+interface Information {
+  label: string;
+  value: string | string[];
+  icon: Component
+};
+const information: Information[] = [
   {
     label: "Head Office",
     value: "1 Awe St, Ojodu, Lagos 101232, Lagos.",
@@ -14,12 +20,12 @@ const information = [
   },
   {
     label: "Phone",
-    value: "+2347069973395, +2348073467445",
+    value: ["+2347069973395", "+2348073467445"],
     icon: Phone,
   },
   {
     label: "Hours",
-    value: "Monday - Friday: 9:00 AM - 8:00 PM, Saturday - Sunday: 8:00 AM - 9:00 PM",
+    value: ["Monday - Friday: 9:00 AM - 8:00 PM", "Saturday - Sunday: 8:00 AM - 9:00 PM"],
     icon: Clock,
   }
 ]
@@ -32,25 +38,22 @@ const information = [
       </h3>
       
       <div class="space-y-6">
-        <div v-for="item in information" :key="item.value" class="flex items-start space-x-4">
-          <component :is="item.icon" class="w-6 h-6 text-primary mt-1 flex-shrink-0" />
+        <div v-for="{label, value, icon} in information" :key="label" class="flex items-start space-x-4">
+          <component :is="icon" class="w-6 h-6 text-primary mt-1 flex-shrink-0" />
           <div>
-            <p class="font-inter font-medium text-foreground">{{ item.label }}</p>
-            <p class="font-inter text-muted-foreground">
-              {{ item.value }}
-            </p>
+            <p class="font-inter font-medium text-foreground">{{ label }}</p>
+            <template v-if="typeof value === 'string'">
+              <p class="font-inter text-muted-foreground">
+                {{ value }}
+              </p>
+            </template>
+            <template v-else>
+              <p v-for="item in value" class="font-inter text-muted-foreground">
+                {{ item }}
+              </p>
+            </template>
           </div>
         </div>
-        <!-- <div class="flex items-start space-x-4">
-          <Clock class="w-6 h-6 text-primary mt-1 flex-shrink-0" />
-          <div>
-            <p class="font-inter font-medium text-foreground">Hours</p>
-            <div class="font-inter text-muted-foreground space-y-1">
-              <p>Monday - Friday: 9:00 AM - 8:00 PM</p>
-              <p>Saturday - Sunday: 8:00 AM - 9:00 PM</p>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
     <iframe

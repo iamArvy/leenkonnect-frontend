@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Autoplay from 'embla-carousel-autoplay'
-import type { Services } from '@/types';
+import type { Services } from '.';
 const router = useRouter();
 defineProps<{
  services: Services
@@ -21,7 +21,9 @@ const carouselData = {
 <template>
   <Carousel
     class="w-full px-5"
-    v-bind="carouselData"
+    :plugins="carouselData.plugins"
+    :opts="carouselData.opts"
+    :services
   >
     <CarouselContent>
       <CarouselItem

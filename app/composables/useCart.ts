@@ -1,6 +1,9 @@
+import { mockFetchProduct, mockFetchProductById } from "~/mocks/product"
 import type { Cart, CartItem } from "~/types"
 
+const generateId = () => Math.random().toString(36).substring(2, 2 + 10)
 export const useCart = () => {
+  const { success, error } = useToast()
   const processing = ref(false)
   // const url = 
   const cart = useState<Cart>('cart', () => ({
@@ -8,23 +11,62 @@ export const useCart = () => {
     total: 0,
   }))
   const clear = () => {
-    cart.value = {} as Cart
-      // router.post(route('cart.clear'), { preserveScroll: true });
-      console.log('Cart cleared')
+    cart.value = {
+      items: [],
+      total: 0,
+    } as Cart
+    success('Cart Cleared', 'Your cart has been cleared.')
   }
   
   const remove = (id: string) => {
-      // router.post(route('cart.remove'), { id:id }, { preserveScroll: true });
-      console.log('Cart Item Removed')
+    const item = cart.value.items.find(i => i.id === id)
+    if (!item) {
+      error('Item not found', 'The item you are trying to remove does not exist in the cart.')
+      return
+    }
+    cart.value.total -= item.total
+    cart.value.items = cart.value.items.filter(i => i.id !== id)
+    success('Item Removed from Cart', `You have removed ${item.product.name} from your cart.`)
   }
 
-  const add = (value:number, id:string ) => {
-    // Logic to increase item quantity
-      // if (value < stock) navigate('cart.increase', id)
+  const add = async (value:number, id:string ) => {
+    const product = await mockFetchProductById(id)
+    cart.value.items.push({
+      id: generateId(),
+      product: product,
+      quantity: value,
+      total: product.price * value,
+    })
+    cart.value.total += product.price * value
+    success('Item Added to Cart', `You have added ${value} x ${product.name} to your cart.`)
   }
   
+  const plus = (value:number, id:string) => {
+    const item = cart.value.items.find(i => i.id === id)
+    if (!item) {
+      error('Item not found', 'The item you are trying to increase does not exist in the cart.')
+      return
+    }
+    item.quantity += value
+    item.total += item.product.price * value
+    cart.value.total += item.product.price * value
+    success('Item Quantity Increased', `You have increased the quantity of ${item.product.name} to ${item.quantity}.`)
+  }
   
   const minus = (value:number, id:string) => {
+    const item = cart.value.items.find(i => i.id === id)
+    if (!item) {
+      error('Item not found', 'The item you are trying to decrease does not exist in the cart.')
+      return
+    }
+    if (item.quantity <= 1) {
+      remove(id)
+      return
+    }
+    item.quantity -= value
+    item.total -= item.product.price * value
+    cart.value.total -= item.product.price * value
+    success('Item Quantity Decreased', `You have decreased the quantity of ${item.product.name} to ${item.quantity}.`)
     // Logic to reduce item quantity
       // value <= 1 ? navigate('cart.remove', id) : navigate('cart.decrease', id)
   }
@@ -33,14 +75,19 @@ export const useCart = () => {
     return (id: string) => cart.value.items.find((i: CartItem) => i.product.id === id)
   })
 
-  const itemsByProductId = computed<Record<string, CartItem>>(() =>
-  Object.fromEntries(
-    cart.value.items.map((item: CartItem) => [item.product.id, item])
-  )
-)
+  // const getItem = (id: string) => computed(() => 
+  //   cart.value.items.find(item => item.product.id === id)
+  // )
 
-const getItem = (id: string) => itemsByProductId.value[id]
+  const getItem = (id: string) => {
+    return cart.value.items.find(item => item.product.id === id);
+  }
 
+  const checkout = ({}) => {
+    // Logic to handle checkout
+    clear()
+    success('Checkout Successful', 'You have successfully checked out.')
+  }
 
   // const item = computed(() => 
   // cart.value.items.find((i: CartItem) => i.product.id === productId.value)
@@ -51,9 +98,11 @@ const getItem = (id: string) => itemsByProductId.value[id]
     clear,
     remove,
     add,
+    plus,
     minus,
     item,
     processing,
-    getItem
+    getItem,
+    checkout
   }
 }

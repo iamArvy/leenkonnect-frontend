@@ -8,6 +8,6 @@ defineProps<Testimonial>()
         <h3 class="font-bold capitalize " > {{ name }} </h3>
         <h4 class="font-semibold" > {{ occupation }}</h4>
         <p class="small text-primary flex-1"> {{ content }} </p>
-        <Ratings :rating="rating ?? 4" />
+        <Ratings :rating="rating ?? 4" :total="20" />
     </div>
 </template>
