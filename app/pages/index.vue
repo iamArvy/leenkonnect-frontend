@@ -34,6 +34,6 @@ const { data, error } = await useAsyncData('home', async () => {
     <HomeTestimonial :testimonials="data?.testimonies" />
     <HomeCta />
     <HomeBlog :blog="data?.blog ?? []" />
-    <Contact />
+    <HomeContact />
   </main>
 </template>
