@@ -8,17 +8,15 @@ defineProps<{
 }>()
 </script>
 <template>
-    <div class="flex items-center gap-2 p-1" >
-        <Button size="icon" @click="minus(1, id)">
+    <div class="flex items-center gap-2 p-1">
+        <Button size="icon" @click="minus(id)">
             <Minus />
         </Button>
-        <span class="flex-1 text-center" >{{ value }}</span>
-        <Button size="icon"  @click="plus(1, id)"  >
+        <span class="flex-1 text-center">{{ value }}</span>
+        <Button size="icon" @click="plus(id)">
             <Plus />
-        </Button >
+        </Button>
     </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

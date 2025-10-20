@@ -1,8 +1,6 @@
 export const navs = [
-  { label: 'Home', path: '/'},
-  { label: 'Consultation', path: '/consultation'},
+    { label: 'Services', path: '/services'},
   { label: 'Shop', path: '/shop' },
-  { label: 'Services', path: '/services'},
   { label: 'Blog', path: '/blog' },
   { label: 'About', path: '/about'},
   { label: 'Contact', path: '/contact'},

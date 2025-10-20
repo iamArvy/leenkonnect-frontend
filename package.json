@@ -10,17 +10,21 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@faker-js/faker": "^10.1.0",
     "@nuxt/icon": "2.0.0",
     "@nuxt/image": "1.11.0",
+    "@paystack/inline-js": "^2.22.7",
     "@tailwindcss/vite": "^4.1.12",
     "@vee-validate/zod": "^4.15.1",
     "@vueuse/core": "^13.8.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-fade": "^8.6.0",
     "embla-carousel-vue": "^8.6.0",
     "lucide-vue-next": "^0.542.0",
     "nuxt": "^4.0.3",
+    "nuxt-auth-utils": "0.5.25",
     "reka-ui": "^2.5.0",
     "shadcn-nuxt": "2.2.0",
     "tailwind-merge": "^3.3.1",
@@ -37,6 +41,7 @@
     "@iconify-json/logos": "^1.2.9",
     "@iconify-json/lucide": "^1.2.65",
     "@iconify-json/mingcute": "^1.2.5",
-    "@tailwindcss/typography": "^0.5.16"
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/paystack__inline-js": "^1.0.2"
   }
 }

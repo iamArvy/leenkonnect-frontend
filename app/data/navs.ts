@@ -1,12 +1,10 @@
-import type { Nav } from "~/types";
+import type { Nav } from "~/interfaces";
 
 export const navs: Nav[] = [
-    { label: 'Home', path: '/'},
-    { label: 'Consultation', path: '/consultation'},
-    { label: 'Shop', path: '/shop' },
     { label: 'Services', path: '/services'},
-    { label: 'Blog', path: '/blog' },
+    { label: 'Shop', path: '/shop' },
     { label: 'About', path: '/about'},
+    { label: 'Blog', path: '/blog' },
     { label: 'Contact', path: '/contact'},
 ];
 

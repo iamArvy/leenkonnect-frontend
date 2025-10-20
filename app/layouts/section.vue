@@ -1,15 +1,15 @@
-<script setup lang="ts" >
+<script setup lang="ts">
 defineProps<{
-    title?: string;
-    subtitle?: string;
+  title?: string;
+  subtitle?: string;
 }>();
 </script>
 <template>
-  <section>
-    <div class="container mx-auto py-10 min-h-100vh flex flex-col gap-6">
-      <div class="text-center">
-        <h2 class="text-md md:text-lg font-bold" > {{ title }} </h2>
-        <p class="text-2xl md:text-4xl font-bold text-primary">{{ subtitle }}</p>
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12 animate-fade-in">
+        <h2 class="text-3xl md:text-4xl font-bold"> {{ title }} </h2>
+        <p class="text-muted-foreground text-lg max-w-2xl mx-auto">{{ subtitle }}</p>
       </div>
       <slot />
     </div>

@@ -1,60 +1,70 @@
-import { mockFetchProduct, mockFetchProductById } from "~/mocks/product"
-import type { Cart, CartItem } from "~/types"
+import type { Cart, Product } from "~/interfaces"
 
-const generateId = () => Math.random().toString(36).substring(2, 2 + 10)
-export const useCart = () => {
+interface CartResponse {
+  success: boolean,
+  cart: Cart
+}
+// composables/useCart.ts
+export function useCart() {
   const { success, error } = useToast()
-  const processing = ref(false)
-  // const url = 
+  //   const cart = useState<Cart>({
+  //   items: [],
+  //   total: 0,
+  // });
   const cart = useState<Cart>('cart', () => ({
     items: [],
     total: 0,
   }))
-  const clear = () => {
-    cart.value = {
-      items: [],
-      total: 0,
-    } as Cart
-    success('Cart Cleared', 'Your cart has been cleared.')
-  }
-  
-  const remove = (id: string) => {
-    const item = cart.value.items.find(i => i.id === id)
-    if (!item) {
-      error('Item not found', 'The item you are trying to remove does not exist in the cart.')
-      return
+
+  const processing = ref(false);
+
+  onMounted(() => {
+    if (import.meta.client) {
+      const stored = localStorage.getItem("cart");
+      if (stored) {
+        try {
+          cart.value = JSON.parse(stored);
+        } catch {
+          cart.value = { items: [], total: 0 };
+        }
+      }
     }
-    cart.value.total -= item.total
-    cart.value.items = cart.value.items.filter(i => i.id !== id)
-    success('Item Removed from Cart', `You have removed ${item.product.name} from your cart.`)
+  });
+
+  watch(
+    cart,
+    (val) => {
+      if (import.meta.client) {
+        localStorage.setItem("cart", JSON.stringify(val));
+      }
+    },
+    { deep: true }
+  );
+
+  function add(product: Product) {
+    cart.value.items.push({
+      product: product,
+      quantity: 1,
+      total: product.price,
+    })
+    cart.value.total += product.price
+    success('Item Added to Cart', `You have added ${product.name} to your cart.`)
   }
 
-  const add = async (value:number, id:string ) => {
-    const product = await mockFetchProductById(id)
-    cart.value.items.push({
-      id: generateId(),
-      product: product,
-      quantity: value,
-      total: product.price * value,
-    })
-    cart.value.total += product.price * value
-    success('Item Added to Cart', `You have added ${value} x ${product.name} to your cart.`)
-  }
-  
-  const plus = (value:number, id:string) => {
-    const item = cart.value.items.find(i => i.id === id)
+  async function plus(id: string) {
+    const item = getItem(id)
     if (!item) {
       error('Item not found', 'The item you are trying to increase does not exist in the cart.')
       return
     }
-    item.quantity += value
-    item.total += item.product.price * value
-    cart.value.total += item.product.price * value
+    item.quantity++
+    item.total += item.product.price
+    cart.value.total += item.product.price
     success('Item Quantity Increased', `You have increased the quantity of ${item.product.name} to ${item.quantity}.`)
   }
-  
-  const minus = (value:number, id:string) => {
-    const item = cart.value.items.find(i => i.id === id)
+
+  function minus(id: string) {
+    const item = getItem(id)
     if (!item) {
       error('Item not found', 'The item you are trying to decrease does not exist in the cart.')
       return
@@ -63,46 +73,34 @@ export const useCart = () => {
       remove(id)
       return
     }
-    item.quantity -= value
-    item.total -= item.product.price * value
-    cart.value.total -= item.product.price * value
+    item.quantity--
+    item.total -= item.product.price
+    cart.value.total -= item.product.price
     success('Item Quantity Decreased', `You have decreased the quantity of ${item.product.name} to ${item.quantity}.`)
-    // Logic to reduce item quantity
-      // value <= 1 ? navigate('cart.remove', id) : navigate('cart.decrease', id)
   }
 
-  const item = computed(() => {
-    return (id: string) => cart.value.items.find((i: CartItem) => i.product.id === id)
-  })
-
-  // const getItem = (id: string) => computed(() => 
-  //   cart.value.items.find(item => item.product.id === id)
-  // )
-
-  const getItem = (id: string) => {
-    return cart.value.items.find(item => item.product.id === id);
+  function remove(id: string) {
+    const item = getItem(id)
+    if (!item) {
+      error('Item not found', 'The item you are trying to remove does not exist in the cart.')
+      return
+    }
+    cart.value.total -= item.total
+    cart.value.items = cart.value.items.filter(i => i.product.id !== id)
+    success('Item Removed from Cart', `You have removed ${item.product.name} from your cart.`)
   }
 
-  const checkout = ({}) => {
-    // Logic to handle checkout
-    clear()
-    success('Checkout Successful', 'You have successfully checked out.')
+  function clear() {
+    cart.value = {
+      items: [],
+      total: 0
+    }
+    success('Cart Cleared', 'Your cart has been cleared.')
   }
 
-  // const item = computed(() => 
-  // cart.value.items.find((i: CartItem) => i.product.id === productId.value)
-
-  
-  return {
-    cart, 
-    clear,
-    remove,
-    add,
-    plus,
-    minus,
-    item,
-    processing,
-    getItem,
-    checkout
+  function getItem(id: string){
+    return cart.value.items.find(i => i.product.id === id);
   }
+
+  return { cart, processing, getItem, add, plus, minus, remove, clear }
 }
