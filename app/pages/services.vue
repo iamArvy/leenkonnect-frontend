@@ -36,21 +36,5 @@ const { data: services } = useFetch('/api/services');
       </Accordion>
     </div>
   </section>
-  <section class="py-20 bg-gradient-cta">
-    <div class="container mx-auto px-4">
-      <div class="max-w-3xl mx-auto text-center text-white animate-fade-in">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">
-          Need a Custom Solution?
-        </h2>
-        <p class="text-xl mb-8 text-white/90">
-          Let's discuss your unique requirements and create a tailored IT
-          strategy for your business.
-        </p>
-        <Button size="lg" class="bg-white text-primary hover:bg-white/90">
-          Schedule a Consultation
-          <ArrowRight class="w-5 h-5 ml-2" />
-        </Button>
-      </div>
-    </div>
-  </section>
+  <HomeCta />
 </template>
