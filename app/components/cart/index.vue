@@ -7,9 +7,7 @@ const router = useRouter()
 <template>
     <Sheet>
         <SheetTrigger as-child>
-            <Button variant="ghost">
-                <ShoppingCart />
-            </Button>
+            <ShoppingCart />
         </SheetTrigger>
         <SheetContent side="right" class="flex flex-col max-md:w-full px-2">
             <SheetHeader>
@@ -49,8 +47,10 @@ const router = useRouter()
                             <Button @click="clear()" :disabled="cart.items.length === 0"
                                 variant="destructive">Clear</Button>
                         </SheetClose>
-                        <Button @click="router.push(`/shop/checkout`)"
-                            :disabled="cart.items.length === 0">Checkout</Button>
+                        <SheetClose as-child>
+                            <Button @click="router.push(`/shop/checkout`)"
+                                :disabled="cart.items.length === 0">Checkout</Button>
+                        </SheetClose>
                     </div>
                 </div>
             </SheetFooter>
