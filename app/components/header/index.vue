@@ -20,7 +20,7 @@ import { navs } from '@/data'
       </nav>
       <div class="flex items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
         <Cart />
-        <Button @click="navigateTo({ name: 'booking' })" class="hidden lg:block">
+        <Button @click="navigateTo('/consultation')" class="hidden lg:block">
           Free Consultation
         </Button>
         <!-- <HeaderAccount :auth="user" /> -->

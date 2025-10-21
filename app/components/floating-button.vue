@@ -31,7 +31,7 @@ watch(isDismissed, (newVal) => {
         shadow-medium hover:bg-muted transition-colors">
         <X class="w-3 h-3" />
       </button>
-      <Button @click="navigateTo('/booking')" size="lg"
+      <Button @click="navigateTo('/consultation')" size="lg"
         class="bg-white text-primary hover:bg-white/90 rounded-full shadow-lg group">
         <Calendar class="w-5 h-5 mr-2" />
         Book Now

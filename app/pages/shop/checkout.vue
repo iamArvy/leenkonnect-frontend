@@ -20,7 +20,7 @@ const { submit, cities, values, isSubmitting, meta, states } = useCheckoutForm()
 <template>
   <main class="container mx-auto px-4 py-4 space-y-4 ">
     <h1 class="font-bold text-3xl">Checkout Page</h1>
-    <form @submit="submit" class="container mx-auto sm:grid grid-cols-3space-x-3 space-y-3">
+    <form @submit="submit" class="container mx-auto sm:grid grid-cols-3 space-x-3 space-y-3">
       <div class="col-span-2 space-y-3">
         <FormField name="name" v-slot="{ componentField }">
           <FormItem>

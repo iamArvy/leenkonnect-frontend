@@ -15,7 +15,8 @@ import { ArrowRight, Calendar } from 'lucide-vue-next';
         age.
       </p>
       <br />
-      <Button size="lg" @click="navigateTo('/booking')" variant="secondary" class="text-primary" data-aos="fade-up">
+      <Button size="lg" @click="navigateTo('/consultation')" variant="secondary" class="text-primary"
+        data-aos="fade-up">
         <Calendar />
         Book Your Free Consultation
         <ArrowRight />

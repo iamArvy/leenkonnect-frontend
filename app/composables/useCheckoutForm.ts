@@ -55,6 +55,7 @@ export function useCheckoutForm () {
       error('Payment cancelled')
     }
     success("Checkout Successful")
+    navigateTo("/success")
   })
 
   return {
