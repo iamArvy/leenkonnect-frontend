@@ -39,7 +39,7 @@ useAppTitle("Blog")
 
 
       <!-- 📰 Posts List -->
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" v-if="posts?.items?.length">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" v-if="posts?.items?.length">
         <BlogCard v-for="(post, index) in posts.items" :key="post.id" v-bind="post" data-aos="fade-up"
           :style="{ animationDelay: `${index * 100}ms` }" />
       </div>

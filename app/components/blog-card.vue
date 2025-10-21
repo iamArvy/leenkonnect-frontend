@@ -14,7 +14,7 @@ defineProps<Post>()
         {{ category?.name }}
       </Badge>
     </div>
-    <div class="p-1 px-3">
+    <div class="pb-3 px-3">
       <h3 class="text-xl font-semibold mb-3 line-clamp-2 group-hover:text-primary transition-colors">
         {{ title }}
       </h3>

@@ -5,7 +5,7 @@ import { ArrowRight, Calendar } from 'lucide-vue-next';
 
 <template>
   <div
-    class="w-full bg-gradient-cta min-h-[400px] text-white text-center flex flex-col justify-center items-center gap-4">
+    class="w-full bg-gradient-cta min-h-[400px] text-white text-center flex flex-col justify-center items-center gap-4 px-4">
     <div class="container text-white text-center flex flex-col justify-center items-center gap-4 max-w-2xl">
       <h1 class="text-2xl md:text-4xl font-bold" data-aos="fade-up">
         Ready to Transform Your Business?
