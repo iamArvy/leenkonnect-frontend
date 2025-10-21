@@ -3,7 +3,7 @@ import 'vue-sonner/style.css'; // vue-sonner v2 requires this import
 </script>
 <template>
   <NuxtLayout>
-    <Transition name="slide" mode="out-in">
+    <Transition name="fade" mode="out-in">
       <NuxtPage />
     </Transition>
   </NuxtLayout>
