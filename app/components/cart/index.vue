@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ShoppingCart, Trash } from 'lucide-vue-next';
-import { formatPrice } from '~/helpers/format-price';
+import { formatPrice } from '~/utils/format-price';
 const { cart, clear, remove } = useCart()
 const router = useRouter()
 </script>

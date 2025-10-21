@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { formatPrice } from '~/helpers/format-price';
+import { formatPrice } from '~/utils/format-price';
 import type { ProductsResponse } from '~/interfaces';
 
 const { filters } = useShopFilters()

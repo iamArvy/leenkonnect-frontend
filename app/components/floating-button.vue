@@ -26,7 +26,7 @@ watch(isDismissed, (newVal) => {
 <template>
   <div class="fixed bottom-6 right-6 z-40 transition-all duration-300" :class="isVisible ? 'translate-y-0 opacity-100'
     : 'translate-y-20 opacity-0'">
-    <div class=" relative bg-gradient-primary rounded-full shadow-strong p-1 animate-float">
+    <div class=" relative bg-gradient-cta rounded-full shadow-strong p-1 animate-float">
       <button @click="isDismissed = true" class="absolute -top-2 -right-2 w-6 h-6 bg-background rounded-full flex items-center justify-center
         shadow-medium hover:bg-muted transition-colors">
         <X class="w-3 h-3" />

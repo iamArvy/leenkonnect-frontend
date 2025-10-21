@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import { formatPrice } from '~/helpers/format-price';
+import { formatPrice } from '~/utils/format-price';
 
 
-    defineProps<{
-        price: number
-        discount?: number
-    }>();
-const discountedPrice = (price:number, discount:number) => {
+defineProps<{
+  price: number
+  discount?: number
+}>();
+const discountedPrice = (price: number, discount: number) => {
   return price - (price * (discount / 100));
 }
 </script>
 <template>
-    <div class="flex flex-row gap-2">
-        <h3 class="font-bold text-2xl" >
-          {{ discount ? formatPrice( discountedPrice(price, discount)) : formatPrice(price) }}
-        </h3>
-        <div class="inline align-middle" v-if="discount">
-          <h3 class="font-bold text-2xl text-gray-500 line-through"> {{ formatPrice(price) }} </h3>
-          <span class="text-red-500 text-xs rounded p-1 bg-red-200">-{{discount.toLocaleString()}}%</span>
-        </div>
-      </div>
+  <div class="flex flex-row gap-2">
+    <h3 class="font-bold text-2xl">
+      {{ discount ? formatPrice(discountedPrice(price, discount)) : formatPrice(price) }}
+    </h3>
+    <div class="inline align-middle" v-if="discount">
+      <h3 class="font-bold text-2xl text-gray-500 line-through"> {{ formatPrice(price) }} </h3>
+      <span class="text-red-500 text-xs rounded p-1 bg-red-200">-{{ discount.toLocaleString() }}%</span>
+    </div>
+  </div>
 </template>
