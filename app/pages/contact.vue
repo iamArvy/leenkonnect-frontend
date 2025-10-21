@@ -1,4 +1,4 @@
-<script setup lang="ts" >
+<script setup lang="ts">
 const hero = {
   title: "Contact Us",
   description: "We'd love to hear from you",
@@ -6,7 +6,7 @@ const hero = {
 };
 </script>
 <template>
-  <main>
+  <main class="mb-6">
     <HeroSection v-bind="hero" />
     <Contact />
   </main>

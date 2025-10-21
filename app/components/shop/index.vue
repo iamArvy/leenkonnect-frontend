@@ -8,7 +8,7 @@ const { data: products } = useFetch<ProductsResponse>('/api/products', {
 })
 </script>
 <template>
-  <main class="container mx-auto space-y-6">
+  <main class="container mx-auto space-y-6 px-4">
     <section class="flex justify-between items-center gap-1">
       <h1 class="text-lg sm:text-xl md:text-3xl font-bold">
         <slot name="title" />
@@ -18,7 +18,7 @@ const { data: products } = useFetch<ProductsResponse>('/api/products', {
       </h1>
       <ShopFilter />
     </section>
-    <section class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 col-span-2"
+    <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 col-span-2"
       v-if="products && products.items.length > 0">
       <div v-for="(product, index) in products.items" :key="product.id"
         class="py-0 overflow-hidden hover:shadow-strong transition-all duration-300 group animate-fade-in cursor-pointer select-none group"

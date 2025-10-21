@@ -26,5 +26,11 @@ export default defineNuxtConfig({
      * @default "./app/components/ui"
      */
     componentDir: './app//components/ui'
-  }
+  },
+  runtimeConfig: {
+    public: {
+      paystackKey: '',
+    },
+    paystackKey:'',
+  },
 })

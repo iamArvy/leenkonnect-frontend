@@ -10,7 +10,7 @@ const { settings, emblaMainApi, selectedIndex } = usePropertyGallery();
 
 </script>
 <template>
-  <main class="container mx-auto space-y-6 mb-6">
+  <main class="container mx-auto space-y-6 mb-6 px-4">
     <section class="md:grid grid-cols-3 gap-6 sm:gap-4" v-if="product">
       <Carousel v-bind="settings" @init-api="(val) => emblaMainApi = val" class="relative group" data-aos="fade-right">
         <div
